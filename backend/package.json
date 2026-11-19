@@ -1,0 +1,17 @@
+{
+  "name": "image-steganography-backend",
+  "version": "1.0.0",
+  "description": "Node.js + Express backend for Zero-Ghosting Image Steganography (CS-301L FSD Lab)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.0",
+    "sharp": "^0.34.2"
+  }
+}
