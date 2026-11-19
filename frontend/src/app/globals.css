@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+:root {
+  --radius: 0.875rem;
+  --ease-out-expo: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --background: oklch(0.985 0.004 165);
+  --foreground: oklch(0.16 0.014 175);
+  --card: oklch(1 0.002 165 / 88%);
+  --card-foreground: oklch(0.16 0.014 175);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.014 175);
+  --primary: oklch(0.47 0.125 164);
+  --primary-foreground: oklch(0.99 0.005 165);
+  --secondary: oklch(0.945 0.008 165);
+  --secondary-foreground: oklch(0.22 0.014 175);
+  --muted: oklch(0.95 0.006 165);
+  --muted-foreground: oklch(0.46 0.014 175);
+  --accent: oklch(0.935 0.018 164);
+  --accent-foreground: oklch(0.2 0.02 168);
+  --destructive: oklch(0.56 0.22 25);
+  --border: oklch(0.88 0.01 168);
+  --input: oklch(0.88 0.01 168);
+  --ring: oklch(0.47 0.125 164);
+}
+
+.dark {
+  --background: oklch(0.125 0.01 178);
+  --foreground: oklch(0.96 0.006 165);
+  --card: oklch(0.165 0.012 178 / 86%);
+  --card-foreground: oklch(0.96 0.006 165);
+  --popover: oklch(0.165 0.012 178);
+  --popover-foreground: oklch(0.96 0.006 165);
+  --primary: oklch(0.62 0.145 162);
+  --primary-foreground: oklch(0.12 0.02 172);
+  --secondary: oklch(0.22 0.012 178);
+  --secondary-foreground: oklch(0.95 0.006 165);
+  --muted: oklch(0.205 0.012 178);
+  --muted-foreground: oklch(0.71 0.014 170);
+  --accent: oklch(0.23 0.025 168);
+  --accent-foreground: oklch(0.96 0.006 165);
+  --destructive: oklch(0.66 0.19 22);
+  --border: oklch(1 0.01 168 / 11%);
+  --input: oklch(1 0.01 168 / 15%);
+  --ring: oklch(0.62 0.145 162);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/60;
+  }
+  body {
+    @apply bg-background text-foreground;
+    caret-color: var(--primary);
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--primary) 28%, transparent);
+    color: var(--foreground);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--muted-foreground) 32%, transparent);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--muted-foreground) 52%, transparent);
+  }
+}
+
+.pressable {
+  transition:
+    transform 150ms var(--ease-out-expo),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 180ms ease;
+}
+
+.pressable:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.studio-surface {
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.06),
+    0 18px 48px -18px oklch(0 0 0 / 0.28);
+}
+
+.dark .studio-surface {
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.05) inset,
+    0 24px 60px -20px oklch(0 0 0 / 0.65);
+}
+
+@keyframes resultReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-result-reveal {
+  animation: resultReveal 260ms var(--ease-out-expo) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-result-reveal {
+    animation: none;
+  }
+  .pressable:active:not(:disabled) {
+    transform: none;
+  }
+}
