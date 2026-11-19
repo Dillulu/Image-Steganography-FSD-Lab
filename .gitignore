@@ -1,0 +1,33 @@
+# =========================
+# Frontend (Next.js / React)
+# =========================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/coverage/
+frontend/.env*
+!frontend/.env.example
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+frontend/.vercel
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+frontend/bun.lock
+
+# =========================
+# Backend (Node.js / Express)
+# =========================
+backend/node_modules/
+backend/.env
+backend/.env.*
+backend/*.log
+
+# =========================
+# Global & Local Artifacts
+# =========================
+.DS_Store
+Thumbs.db
+*.pdf
